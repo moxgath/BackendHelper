@@ -2,7 +2,6 @@
     "name": "moxga/backend-helper",
     "description": "Backend Helper",
     "type": "laravel",
-    "minimum-stability": "dev",
     "keywords": ["laravel", "admin", "administrator", "backend", "crud"],
     "license": "MIT",
     "authors": [
