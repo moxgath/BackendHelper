@@ -1,0 +1,28 @@
+/* #Loader */
+div.ikr-loader {
+  background-color: rgba(220, 220, 220, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  z-index: 1000001!important;
+}
+div.ikr-loader .ikr-loader-box {
+    width: 400px;
+    margin: auto;
+    margin-top: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.7);
+    -webkit-box-shadow: 0px 10px 60px -10px rgba(136,136,136,1);
+    -moz-box-shadow: 0px 10px 60px -10px rgba(136,136,136,1);
+    box-shadow: 0px 10px 60px -10px rgba(136,136,136,1);
+}
+div.ikr-loader .ikr-loader-box p {
+    color: #FF3884;
+    font-size: 16px;
+    margin-top: 15px;
+}
+body.loading {
+  overflow: hidden;
+}
