@@ -69,7 +69,7 @@ class Field {
 			case 'select': {
 				array_merge($this->options, [
 					'data-plugin-multiselect' => 'data-plugin-multiselect',
-					'data-plugin-options'     => '{"enableCaseInsensitiveFiltering": true}',
+					'data-plugin-options'     => '{\"enableCaseInsensitiveFiltering\": true}',
 					'multiple'                => 'multiple',
 				]);
 				return $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
@@ -77,7 +77,7 @@ class Field {
 			}
 			case 'date': {
 				$this->options['data-plugin-datepicker'] = 'data-plugin-datepicker';
-				$this->options['data-plugin-options'] = '{"format": "yyyy-mm-dd"}';
+				$this->options['data-plugin-options'] = '{\"format\": \"yyyy-mm-dd\"}';
 				return $formBuilder->input('text', $this->name, $this->value ?: date('Y-m-d'), $this->options);
 				break;
 			}
