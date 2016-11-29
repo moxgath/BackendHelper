@@ -48,7 +48,7 @@ class BackendHelper
 
 	public function addSelect($name, Collection $list, $selected = null, $options = ['class' => 'form-control']) {
 		$field = new Field;
-		$field->setType('select');
+		$field->setType(is_array($selected) ? 'multiselect' : 'select');
 		$field->setName($name);
 		$field->setValue($list->toArray());
 		$field->setSelected($selected);
@@ -95,24 +95,26 @@ class BackendHelper
 
 		foreach($this->fieldList as $field) {
 			$value = null;
-			if(!str_contains($field->getName(), '.')) {
-				$value = $item->{$field->getName()};
-			}
-			else {
-				foreach(explode('.', $field->getName()) as $index => $key) {
-					if($index === 0) {
-						$value = $data->$key;
-					}
-					else {
-						$value = $value->$key;
-					}
+			if(!$field->getValue()) {
+				if(!str_contains($field->getName(), '.')) {
+					$value = $item->{$field->getName()};
 				}
-				$value = $item->{$field->getName()};
-			}
-			if($field->getType() == 'select') {
-				$field->setSelected($value);
-			} else {
-				$field->setValue($value);
+				else {
+					foreach(explode('.', $field->getName()) as $index => $key) {
+						if($index === 0) {
+							$value = $data->$key;
+						}
+						else {
+							$value = $value->$key;
+						}
+					}
+					$value = $item->{$field->getName()};
+				}
+				if($field->getType() == 'select') {
+					$field->setSelected($value);
+				} else {
+					$field->setValue($value);
+				}
 			}
 		}
 		return $this->renderCustomView('backendhelper::edit', $parameters);

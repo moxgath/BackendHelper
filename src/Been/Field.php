@@ -66,12 +66,21 @@ class Field {
 				return $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;
 			}
+			case 'multiselect': {
+				$html = [];
+				$html[] = '<select name="'.$this->name.'[]" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options=\'{ "enableCaseInsensitiveFiltering": true }\'>';
+				foreach($this->value as $key => $val) {
+					if(in_array($key, $this->selected)) {
+						$html[] = '<option value="'.$key.'" selected>'.$val.'</option>';
+					} else {
+						$html[] = '<option value="'.$key.'">'.$val.'</option>';
+					}
+				}
+				$html[] = '</select>';
+				return implode(PHP_EOL, $html);
+				break;
+			}
 			case 'select': {
-				array_merge($this->options, [
-					'data-plugin-multiselect' => 'data-plugin-multiselect',
-					'data-plugin-options'     => '{\"enableCaseInsensitiveFiltering\": true}',
-					'multiple'                => 'multiple',
-				]);
 				return $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
 				break;
 			}

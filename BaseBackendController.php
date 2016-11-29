@@ -25,29 +25,6 @@ class BaseBackendController extends Controller
 		$newsMenu->addSubMenu('Topic', action('Backend\NewsController@index'), 'fa fa-list');
 		$newsMenu->addSubMenu('Comment', action('Backend\NewsCommentController@index'), 'fa fa-comments');
 
-		$eventMenu = $this->backendHelper->addMenu('Event', "#", 'fa fa-star');
-		$eventMenu->addSubMenu('Topic', action('Backend\EventController@index'), 'fa fa-list');
-		$eventMenu->addSubMenu('Comment', action('Backend\EventCommentController@index'), 'fa fa-comments');
-
-		$webboardMenu = $this->backendHelper->addMenu('Webboard', "#", 'fa fa-list-alt');
-		$webboardMenu->addSubMenu('Topic', action('Backend\WebboardController@index'), 'fa fa-list');
-		$webboardMenu->addSubMenu('Category', action('Backend\WebboardCategoryController@index'), 'fa fa-list');
-		$webboardMenu->addSubMenu('Comment', action('Backend\WebboardCommentController@index'), 'fa fa-comments');
-
-		$userMenu = $this->backendHelper->addMenu('User', "#", 'fa fa-user');
-		$userMenu->addSubMenu('List', action('Backend\UserController@index'), 'fa fa-list');
-		$userMenu->addSubMenu('Comment', action('Backend\UserCommentController@index'), 'fa fa-comments');
-
-		$this->backendHelper->addMenu('Team', action('Backend\TeamController@index'), 'fa fa-users');
-
-		$gameMenu = $this->backendHelper->addMenu('Game', '#', 'fa fa-gamepad');
-		$gameList = Game::get();
-		foreach($gameList as $game) {
-			$subGameMenu = $gameMenu->addSubMenu($game->name, '#', 'fa fa-folder');
-			$subGameMenu->addSubMenu('Match', action('Backend\MatchController@index', ['game_id' => $game->id]), 'fa fa-list');
-			$subGameMenu->addSubMenu('Match Result', action('Backend\MatchResultController@index', ['game_id' => $game->id]), 'fa fa-list');
-		}
-
 		$this->model     = $this->backendHelper->getModel();
 		$this->baseRoute = $this->backendHelper->getBaseRoute();
 
@@ -81,6 +58,10 @@ class BaseBackendController extends Controller
 		$inputs['updated_at'] = new DateTime;
 		$item = $this->model::create($inputs);
 
+		if(method_exists($this, 'storeCallback')) {
+			$this->storeCallback($request);
+		}
+
 		$fileNameList = $this->uploadFiles($request, $item);
 		$item->update($fileNameList);
 
@@ -96,6 +77,10 @@ class BaseBackendController extends Controller
 
 		$fileNameList = $this->uploadFiles($request, $item);
 		$inputs = array_merge($inputs, $fileNameList);
+
+		if(method_exists($this, 'updateCallback')) {
+			$this->updateCallback($request, $id);
+		}
 
 		$item->update($inputs);
 		return redirect()->route($this->baseRoute.'.edit', $item->id)->with('toastr', ['success' => 'Updated !']);;
