@@ -66,6 +66,10 @@ class Field {
 				return $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;
 			}
+			case 'date': {
+				return $formBuilder->date($this->name, $this->value ?: date('Y-m-d'));
+				break;
+			}
 			case 'toggle': {
 				$html = '<div class="switch switch-primary">
 							<input type="checkbox" name="'.$this->name.'" data-plugin-ios-switch'.($this->value ? ' checked="checked"' : '').'>
