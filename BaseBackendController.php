@@ -58,12 +58,12 @@ class BaseBackendController extends Controller
 		$inputs['updated_at'] = new DateTime;
 		$item = $this->model::create($inputs);
 
+		$fileNameList = $this->uploadFiles($request, $item);
+		$item->update($fileNameList);
+
 		if(method_exists($this, 'storeCallback')) {
 			$this->storeCallback($request);
 		}
-
-		$fileNameList = $this->uploadFiles($request, $item);
-		$item->update($fileNameList);
 
 		return redirect()->route($this->baseRoute.'.edit', $item->id)->with('toastr', ['success' => 'Created !']);;
 	}
@@ -78,11 +78,11 @@ class BaseBackendController extends Controller
 		$fileNameList = $this->uploadFiles($request, $item);
 		$inputs = array_merge($inputs, $fileNameList);
 
+		$item->update($inputs);
+
 		if(method_exists($this, 'updateCallback')) {
 			$this->updateCallback($request, $id);
 		}
-
-		$item->update($inputs);
 		return redirect()->route($this->baseRoute.'.edit', $item->id)->with('toastr', ['success' => 'Updated !']);;
 	}
 
