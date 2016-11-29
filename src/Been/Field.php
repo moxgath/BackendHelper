@@ -92,7 +92,7 @@ class Field {
 			}
 			case 'toggle': {
 				$html = '<div class="switch switch-primary">
-							<input type="checkbox" name="'.$this->name.'" data-plugin-ios-switch'.($this->value ? ' checked="checked"' : '').'>
+							<input type="checkbox" value="1" name="'.$this->name.'" data-plugin-ios-switch'.($this->value ? ' checked="checked"' : '').'>
 						</div>';
 				return $html;
 				break;
