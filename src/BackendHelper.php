@@ -13,16 +13,19 @@ class BackendHelper
 {
 	private $title;
 	private $model;
-	private $menuList   = [];
-	private $fieldList  = [];
-	private $dataList   = [];
-	private $columnList = [];
-	private $files      = [];
-	private $actionList = [];
-	private $editItem   = null;
-	private $addBtn     = true;
-	private $editBtn    = true;
-	private $deleteBtn  = true;
+	private $menuList     = [];
+	private $fieldList    = [];
+	private $dataList     = [];
+	private $columnList   = [];
+	private $files        = [];
+	private $actionList   = [];
+	private $editItem     = null;
+	private $addBtn       = true;
+	private $editBtn      = true;
+	private $deleteBtn    = true;
+	private $addBtnUrl    = null;
+	private $editBtnUrl   = null;
+	private $deleteBtnUrl = null;
 
 	public function __construct($title = 'Shosha Backend', $model = null)
 	{
@@ -150,14 +153,30 @@ class BackendHelper
 		return $this->actionList;
 	}
 
+	public function getAddBtnUrl() {
+		return $this->addBtnUrl;
+	}
+	public function getEditBtnUrl() {
+		return $this->editBtnUrl;
+	}
+	public function getDeleteBtnUrl() {
+		return $this->deleteBtnUrl;
+	}
+
 	public function setAddBtn(bool $value) {
 		$this->addBtn = $value;
 	}
 	public function setEditBtn(bool $value) {
 		$this->editBtn = $value;
 	}
-	public function setDeleteBtn(bool $value) {
-		$this->deleteBtn = $value;
+	public function setAddBtnUrl(bool $value) {
+		$this->addBtnUrl = $value;
+	}
+	public function setEditBtnUrl(bool $value) {
+		$this->editBtnUrl = $value;
+	}
+	public function setDeleteBtnUrl(bool $value) {
+		$this->deleteBtnUrl = $value;
 	}
 
 	public function hasAddBtn() {

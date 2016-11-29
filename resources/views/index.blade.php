@@ -13,7 +13,7 @@
 		<div class="panel-body">
 			@if($backendHelper->hasAddBtn())
 				<div class="text-right mb-md">
-					<a href="{{ route($backendHelper->getBaseRoute().'.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
+					<a href="{{ $backendHelper->getAddBtnUrl() ?: route($backendHelper->getBaseRoute().'.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
 				</div>
 			@endif
 			<table class="table table-bordered table-striped mb-none datatable">
