@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/toastr/toastr.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/css/loading.css') }}" type="text/css" />
 
 <style type="text/css">

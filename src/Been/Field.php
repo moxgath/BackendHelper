@@ -66,6 +66,15 @@ class Field {
 				return $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;
 			}
+			case 'select': {
+				array_merge($this->options, [
+					'data-plugin-multiselect' => 'data-plugin-multiselect',
+					'data-plugin-options'     => '{"enableCaseInsensitiveFiltering": true}',
+					'multiple'                => 'multiple',
+				]);
+				return $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
+				break;
+			}
 			case 'date': {
 				$this->options['data-plugin-datepicker'] = 'data-plugin-datepicker';
 				$this->options['data-plugin-options'] = '{"format": "yyyy-mm-dd"}';

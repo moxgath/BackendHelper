@@ -22,6 +22,7 @@
 <script src="{{ asset('vendor/backendhelper/js/typeahead.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/ios7-switch/ios7-switch.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/summernote/summernote.js') }}"></script>
+<script src="{{ asset('vendor/backendhelper/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/toastr/toastr.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/backendhelper/js/custom.js') }}"></script>
     
