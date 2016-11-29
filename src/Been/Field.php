@@ -67,7 +67,9 @@ class Field {
 				break;
 			}
 			case 'date': {
-				return $formBuilder->date($this->name, $this->value ?: date('Y-m-d'));
+				$this->options['data-plugin-datepicker'] = 'data-plugin-datepicker';
+				$this->options['data-plugin-options'] = '{"format": "yyyy-mm-dd"}';
+				return $formBuilder->input('text', $this->name, $this->value ?: date('Y-m-d'), $this->options);
 				break;
 			}
 			case 'toggle': {

@@ -20,30 +20,29 @@
 <script src="{{ asset('vendor/backendhelper/vendor/summernote/summernote.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/toastr/toastr.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/backendhelper/js/custom.js') }}"></script>
-	
+    
 <script src="{{ asset('vendor/backendhelper/javascripts/theme.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/javascripts/theme.custom.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/javascripts/theme.init.js') }}"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.summernote').summernote({
+    $(document).ready(function() {
+        $('.summernote').summernote({
             height: 400
         });
         $('button[type="reset"]').click(function() {
-        	$('.summernote').code('');
+            $('.summernote').code('');
         });
         $('form').submit(function(e) {
-    		var summernote = $(this).find('.summernote');
-        	if(summernote.length) {
-        		summernote.each(function(index, ele) {
-        			var code = $(ele).summernote('code');
-        			$(ele).summernote('code', code);
-        		});
-        	}
+            var summernote = $(this).find('.summernote');
+            if(summernote.length) {
+                summernote.each(function(index, ele) {
+                    var code = $(ele).summernote('code');
+                    $(ele).summernote('code', code);
+                });
+            }
         });
         $('.nano ul.nav-main li a[href="{{ url()->current() }}"]').parent().addClass('nav-active').parents('li.nav-parent').addClass('nav-expanded nav-active');
-        
         @if(session('toastr'))
             @php
                 $action = array_keys(session('toastr'))[0];
@@ -51,6 +50,6 @@
             @endphp
             toastr.{{ $action }}('{!! $text !!}');
         @endif
-	});
+    });
 </script>
 @stack('javascript')
