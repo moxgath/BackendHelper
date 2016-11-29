@@ -1,3 +1,7 @@
+<script type="text/javascript">
+    var summernoteUploadUrl = "{{ route('summernote.upload') }}";
+    var summernoteToken     = "{{ csrf_token() }}";
+</script>
 <!-- Vendor -->
 <script src="{{ asset('vendor/backendhelper/vendor/jquery/jquery.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
@@ -27,7 +31,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.summernote').summernote({
+        $('.summernote')._summernote({
             height: 400
         });
         $('button[type="reset"]').click(function() {
