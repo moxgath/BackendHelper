@@ -42,7 +42,7 @@ class Field {
 	public function getOptions() {
 		return $this->options;
 	}
-	public function getLabel() { /**/
+	public function getLabel() { /* */
 		return ucfirst(camel_case($this->name));
 	}
 
@@ -60,8 +60,9 @@ class Field {
 			}
 			case 'textarea':
 			case 'editor': {
+				$options = $this->options;
 				if($this->type == 'editor') {
-					$this->options['class'] = 'summernote';
+					$options = array_merge($this->options, ['class' => 'summernote']);
 				}
 				return $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;
@@ -81,13 +82,13 @@ class Field {
 				break;
 			}
 			case 'select': {
-				return $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
+				$options = array_merge($this->options, ['class' => 'form-control populate', 'data-plugin-selectTwo']);
+				return $formBuilder->select($this->name, $this->value, $this->selected, $options);
 				break;
 			}
 			case 'date': {
-				$this->options['data-plugin-datepicker'] = 'data-plugin-datepicker';
-				$this->options['data-plugin-options'] = '{\"format\": \"yyyy-mm-dd\"}';
-				return $formBuilder->input('text', $this->name, $this->value ?: date('Y-m-d'), $this->options);
+				$options = array_merge($this->options, ['data-plugin-datepicker', 'data-plugin-options' => '{\"format\": \"yyyy-mm-dd\"}']);
+				return $formBuilder->input('text', $this->name, $this->value ?: date('Y-m-d'), $options);
 				break;
 			}
 			case 'toggle': {

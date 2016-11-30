@@ -89,7 +89,7 @@ class BaseBackendController extends Controller
 	public function destroy($id) {
 		$item = $this->model::findOrFail($id);
 		$item->delete();
-		return redirect()->route($this->baseRoute.'.index');
+		return redirect()->route($this->baseRoute.'.index')->with('toastr', ['success' => 'Removed !']);;
 	}
 
 	protected function uploadFiles(Request $request, $item) {
