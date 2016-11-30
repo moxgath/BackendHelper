@@ -95,7 +95,7 @@ class BackendHelper
 
 		foreach($this->fieldList as $field) {
 			$value = null;
-			if(!$field->getValue()) {
+			if(!$field->getValue() || ($field->getType() == 'select' && !$field->getSelected())) {
 				if(!str_contains($field->getName(), '.')) {
 					$value = $item->{$field->getName()};
 				}
