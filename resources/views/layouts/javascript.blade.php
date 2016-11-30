@@ -47,7 +47,7 @@
                 });
             }
         });
-        $('.nano ul.nav-main li a[href="{{ url()->current() }}"]').parent().addClass('nav-active').parents('li.nav-parent').addClass('nav-expanded nav-active');
+        $('.nano ul.nav-main a[href="{{ url()->full() }}"]').parent().addClass('nav-active').parents('li.nav-parent').addClass('nav-expanded nav-active');
         @if(session('toastr'))
             @php
                 $action = array_keys(session('toastr'))[0];
