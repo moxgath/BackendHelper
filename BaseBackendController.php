@@ -97,7 +97,9 @@ class BaseBackendController extends Controller
 		foreach($this->backendHelper->getFiles() as $name) {
 			$fileName = $this->uploadFile($request->file($name), $this->filePath);
 			if($fileName) {
-                Storage::disk('public')->delete($this->filePath.'/'.$item->$name);
+				if($item->$name && Storage::disk('public')->exists($this->filePath.'/'.$item->$name)) {
+                	Storage::disk('public')->delete($this->filePath.'/'.$item->$name);
+				}
 				$returnValue[$name] = $fileName;
 			}
 		}
