@@ -60,9 +60,9 @@ class Field {
 			}
 			case 'textarea':
 			case 'editor': {
-				$options = $this->options;
+				$this->options;
 				if($this->type == 'editor') {
-					$options = array_merge($this->options, ['class' => 'summernote']);
+					$this->options = array_merge($this->options, ['class' => 'summernote']);
 				}
 				return $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;

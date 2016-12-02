@@ -94,13 +94,15 @@ class BaseBackendController extends Controller
 
 	protected function uploadFiles(Request $request, $item) {
 		$returnValue = [];
-		foreach($this->backendHelper->getFiles() as $name) {
-			$fileName = $this->uploadFile($request->file($name), $this->filePath);
-			if($fileName) {
-				if($item->$name && Storage::disk('public')->exists($this->filePath.'/'.$item->$name)) {
-                	Storage::disk('public')->delete($this->filePath.'/'.$item->$name);
+		foreach($request->except(['_token', '_method']) as $name => $input) {
+			if($request->file($name)) {
+				$fileName = $this->uploadFile($request->file($name), $this->filePath);
+				if($fileName) {
+					if($item->$name && Storage::disk('public')->exists($this->filePath.'/'.$item->$name)) {
+		                Storage::disk('public')->delete($this->filePath.'/'.$item->$name);
+		            }
+					$returnValue[$name] = $fileName;
 				}
-				$returnValue[$name] = $fileName;
 			}
 		}
 		return $returnValue;
