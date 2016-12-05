@@ -98,7 +98,7 @@ class Field {
 			}
 			case 'datetime': {
 				$value = date('Y-m-d H:i:s', strtotime($this->value)) ?: date('H:i:s');
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimerpicker class="form-control" value="'.$value.'">';
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimepicker class="form-control" value="'.$value.'">';
 				break;
 			}
 			case 'toggle': {
