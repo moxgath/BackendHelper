@@ -53,18 +53,18 @@ class Field {
 
 	public function render() {
 		$formBuilder = $this->getFormBuilder();
+		$html = null;
 		switch ($this->type) {
 			case 'select': {
-				return $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
+				$html = $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
 				break;
 			}
 			case 'textarea':
 			case 'editor': {
-				$this->options;
 				if($this->type == 'editor') {
 					$this->options = array_merge($this->options, ['class' => 'summernote']);
 				}
-				return $formBuilder->textarea($this->name, $this->value, $this->options);
+				$html = $formBuilder->textarea($this->name, $this->value, $this->options);
 				break;
 			}
 			case 'multiselect': {
@@ -78,30 +78,33 @@ class Field {
 					}
 				}
 				$html[] = '</select>';
-				return implode(PHP_EOL, $html);
+				$html = implode(PHP_EOL, $html);
 				break;
 			}
 			case 'select': {
 				$options = array_merge($this->options, ['class' => 'form-control populate', 'data-plugin-selectTwo']);
-				return $formBuilder->select($this->name, $this->value, $this->selected, $options);
+				$html = $formBuilder->select($this->name, $this->value, $this->selected, $options);
 				break;
 			}
 			case 'date': {
-				$options = array_merge($this->options, ['data-plugin-datepicker', 'data-plugin-options' => '{\"format\": \"yyyy-mm-dd\"}']);
-				return $formBuilder->input('text', $this->name, $this->value ?: date('Y-m-d'), $options);
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.(date('Y-m-d', strtotime($this->value)) ?: date('Y-m-d')).'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
+				break;
+			}
+			case 'time': {
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.(date('H:i:s', strtotime($this->value)) ?: date('H:i:s')).'" data-plugin-options=\'{ "showMeridian": false }\'>';
 				break;
 			}
 			case 'toggle': {
 				$html = '<div class="switch switch-primary">
 							<input type="checkbox" value="1" name="'.$this->name.'" data-plugin-ios-switch'.($this->value ? ' checked="checked"' : '').'>
 						</div>';
-				return $html;
 				break;
 			}
 			default: {
-				return $formBuilder->input($this->type, $this->name, $this->value, $this->options);
+				$html = $formBuilder->input($this->type, $this->name, $this->value, $this->options);
 				break;
 			}
 		}
+		return htmlspecialchars_decode($html);
 	}
 }

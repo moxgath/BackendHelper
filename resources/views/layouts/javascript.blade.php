@@ -7,7 +7,10 @@
 <script src="{{ asset('vendor/backendhelper/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/nanoscroller/nanoscroller.js') }}"></script>
+<script src="{{ asset('vendor/backendhelper/vendor/moment/moment.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('vendor/backendhelper/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+<script src="{{ asset('vendor/backendhelper/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/magnific-popup/magnific-popup.js') }}"></script>
 <script src="{{ asset('vendor/backendhelper/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
 
@@ -48,6 +51,10 @@
             }
         });
         $('.nano ul.nav-main a[href="{{ url()->full() }}"]').parent().addClass('nav-active').parents('li.nav-parent').addClass('nav-expanded nav-active');
+        $('input[data-plugin-datetimepicker]').datetimepicker({
+            showTodayButton: true,
+            format: 'YYYY-MM-DD HH:mm'
+        })
         @if(session('toastr'))
             @php
                 $action = array_keys(session('toastr'))[0];

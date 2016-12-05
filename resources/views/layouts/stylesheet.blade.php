@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/font-awesome/css/font-awesome.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/magnific-popup/magnific-popup.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
+<link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css') }}" />
+<link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/select2/select2.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/jquery-datatables-bs3/assets/css/datatables.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/backendhelper/vendor/summernote/summernote.css') }}" />
