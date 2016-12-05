@@ -87,11 +87,18 @@ class Field {
 				break;
 			}
 			case 'date': {
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.(date('Y-m-d', strtotime($this->value)) ?: date('Y-m-d')).'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
+				$value = date('Y-m-d', strtotime($this->value)) ?: date('Y-m-d');
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.$value.'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
 				break;
 			}
 			case 'time': {
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.(date('H:i:s', strtotime($this->value)) ?: date('H:i:s')).'" data-plugin-options=\'{ "showMeridian": false }\'>';
+				$value = date('H:i:s', strtotime($this->value)) ?: date('H:i:s');
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.$value.'" data-plugin-options=\'{ "showMeridian": false }\'>';
+				break;
+			}
+			case 'datetime': {
+				$value = date('Y-m-d H:i:s', strtotime($this->value)) ?: date('H:i:s');
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimerpicker class="form-control" value="'.$value.'">';
 				break;
 			}
 			case 'toggle': {
