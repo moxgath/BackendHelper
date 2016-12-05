@@ -53,7 +53,7 @@
         $('.nano ul.nav-main a[href="{{ url()->full() }}"]').parent().addClass('nav-active').parents('li.nav-parent').addClass('nav-expanded nav-active');
         $('input[data-plugin-datetimepicker]').datetimepicker({
             showTodayButton: true,
-            format: 'YYYY-MM-DD HH:mm'
+            format: 'YYYY-MM-DD HH:mm:ss'
         })
         @if(session('toastr'))
             @php

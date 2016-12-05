@@ -56,7 +56,7 @@ class Field {
 		$html = null;
 		switch ($this->type) {
 			case 'select': {
-				$html = $formBuilder->select($this->name, $this->value, $this->selected, $this->options);
+				$html = $formBuilder->select($this->name, old($this->name, $this->value), $this->selected, $this->options);
 				break;
 			}
 			case 'textarea':
@@ -64,14 +64,14 @@ class Field {
 				if($this->type == 'editor') {
 					$this->options = array_merge($this->options, ['class' => 'summernote']);
 				}
-				$html = $formBuilder->textarea($this->name, $this->value, $this->options);
+				$html = $formBuilder->textarea($this->name, old($this->name, $this->value), $this->options);
 				break;
 			}
 			case 'multiselect': {
 				$html = [];
 				$html[] = '<select name="'.$this->name.'[]" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options=\'{ "enableCaseInsensitiveFiltering": true }\'>';
 				foreach($this->value as $key => $val) {
-					if(in_array($key, $this->selected)) {
+					if(in_array($key, $this->selected) || old($this->name) == $key) {
 						$html[] = '<option value="'.$key.'" selected>'.$val.'</option>';
 					} else {
 						$html[] = '<option value="'.$key.'">'.$val.'</option>';
@@ -88,27 +88,27 @@ class Field {
 			}
 			case 'date': {
 				$value = date('Y-m-d', strtotime($this->value)) ?: date('Y-m-d');
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.$value.'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.old($this->name, $value).'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
 				break;
 			}
 			case 'time': {
 				$value = date('H:i:s', strtotime($this->value)) ?: date('H:i:s');
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.$value.'" data-plugin-options=\'{ "showMeridian": false }\'>';
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.old($this->name, $value).'" data-plugin-options=\'{ "showMeridian": false }\'>';
 				break;
 			}
 			case 'datetime': {
 				$value = date('Y-m-d H:i:s', strtotime($this->value)) ?: date('H:i:s');
-				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimepicker class="form-control" value="'.$value.'">';
+				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimepicker class="form-control" value="'.old($this->name, $value).'">';
 				break;
 			}
 			case 'toggle': {
 				$html = '<div class="switch switch-primary">
-							<input type="checkbox" value="1" name="'.$this->name.'" data-plugin-ios-switch'.($this->value ? ' checked="checked"' : '').'>
+							<input type="checkbox" value="1" name="'.$this->name.'" data-plugin-ios-switch'.(old($this->name, $this->value) ? ' checked="checked"' : '').'>
 						</div>';
 				break;
 			}
 			default: {
-				$html = $formBuilder->input($this->type, $this->name, $this->value, $this->options);
+				$html = $formBuilder->input($this->type, $this->name, old($this->name, $this->value), $this->options);
 				break;
 			}
 		}
