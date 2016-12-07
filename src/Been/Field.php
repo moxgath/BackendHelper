@@ -71,7 +71,7 @@ class Field {
 				$html = [];
 				$html[] = '<select name="'.$this->name.'[]" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options=\'{ "enableCaseInsensitiveFiltering": true }\'>';
 				foreach($this->value as $key => $val) {
-					if(in_array($key, $this->selected) || old($this->name) == $key) {
+					if(in_array($key, $this->selected) || old($this->name, $this->selected) == $key) {
 						$html[] = '<option value="'.$key.'" selected>'.$val.'</option>';
 					} else {
 						$html[] = '<option value="'.$key.'">'.$val.'</option>';
@@ -82,8 +82,23 @@ class Field {
 				break;
 			}
 			case 'select': {
-				$options = array_merge($this->options, ['class' => 'form-control populate', 'data-plugin-selectTwo']);
-				$html = $formBuilder->select($this->name, $this->value, $this->selected, $options);
+				$html = [];
+				$html[] = '<select class="form-control" name="'.$this->name.'" class="form-control populate" data-plugin-selectTwo>';
+
+				foreach($this->value as $key => $val) {
+					if(old($this->name, $this->selected) == $key) {
+						$html[] = '<option value="'.$key.'" selected>'.$val.'</option>';
+					} else {
+						$html[] = '<option value="'.$key.'">'.$val.'</option>';
+					}
+				}
+
+				$html[]	= '    <';
+				$html[]	= '    <option value="2" selected="selected">CS:GO</option>';
+				$html[]	= '    <option value="3">Hearthstone</option>';
+				$html[] = '</select>';
+
+				$html = implode(PHP_EOL, $html);
 				break;
 			}
 			case 'date': {
