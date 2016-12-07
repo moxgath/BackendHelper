@@ -102,7 +102,7 @@ class BackendHelper
 				else {
 					foreach(explode('.', $field->getName()) as $index => $key) {
 						if($index === 0) {
-							$value = $data->$key;
+							$value = $item->$key;
 						}
 						else {
 							$value = $value->$key;
