@@ -51,6 +51,7 @@ class BaseBackendController extends Controller
 	}
 
 	public function store(Request $request) {
+		dd('asdasd');
 		$this->validate($request, $this->model::$rules);
 		$inputs = $request->except(['_token', '_method']);
 

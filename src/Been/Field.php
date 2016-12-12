@@ -56,7 +56,7 @@ class Field {
 		$html = null;
 		switch ($this->type) {
 			case 'select': {
-				$html = $formBuilder->select($this->name, old($this->name, $this->value), $this->selected, $this->options);
+				$html = $formBuilder->select($this->name, $this->value, old($this->name, $this->selected), $this->options);
 				break;
 			}
 			case 'textarea':
