@@ -171,6 +171,9 @@ class BackendHelper
 	public function setEditBtn(bool $value) {
 		$this->editBtn = $value;
 	}
+	public function setDeleteBtn(bool $value) {
+		$this->deleteBtn = $value;
+	}
 	public function setAddBtnUrl($value) {
 		$this->addBtnUrl = $value;
 	}
