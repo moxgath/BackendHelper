@@ -15,6 +15,7 @@
 				<div class="panel-body">
 					@include('backendhelper::panelBody')
 				</div>
+
 				<footer class="panel-footer">
 					<div class="row">
 						<div class="col-sm-10 col-sm-offset-2">

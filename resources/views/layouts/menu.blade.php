@@ -4,14 +4,14 @@
 			<li>
 				<a href="{{ $menu->getUrl() }}">
 					<i class="{{ $menu->getIcon() }}" aria-hidden="true"></i>
-					<span>{{ $menu->getName() }}</span>
+					<span>{!! $menu->getName() !!}</span>
 				</a>
 			</li>
 		@else
 			<li class="nav-parent">
 				<a>
-					<i class="fa fa-{{ $menu->getIcon() }}" aria-hidden="true"></i>
-					<span>{{ $menu->getName() }}</span>
+					<i class="{{ $menu->getIcon() }}" aria-hidden="true"></i>
+					<span>{!! $menu->getName() !!}</span>
 				</a>
 				<ul class="nav nav-children">
 					@include('backendhelper::layouts.menu', ['menuList' => $menu->getSubMenu()])

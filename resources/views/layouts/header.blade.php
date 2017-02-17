@@ -7,7 +7,7 @@
 	</div>
 </div>
 
-<div class="header-right">
+<div class="header-right"><!-- 
 
 	<form action="pages-search-results.html" class="search nav-form">
 		<div class="input-group input-search">
@@ -180,17 +180,17 @@
 			</div>
 		</li>
 	</ul>
+ -->
 
 	<span class="separator"></span>
-
 	<div id="userbox" class="userbox">
 		<a href="#" data-toggle="dropdown">
 			<figure class="profile-picture">
 				<img src="{{ asset('vendor/backendhelper/images/!logged-user.jpg') }}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{ url('assets/backend/assets/images/!logged-user.jpg') }}" />
 			</figure>
 			<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-				<span class="name">John Doe Junior</span>
-				<span class="role">administrator</span>
+				<span class="name">{{ auth()->user()->displayName }}</span>
+				<span class="role">{{ auth()->user()->username }}</span>
 			</div>
 
 			<i class="fa custom-caret"></i>
