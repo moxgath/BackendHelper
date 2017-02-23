@@ -102,17 +102,17 @@ class Field {
 				break;
 			}
 			case 'date': {
-				$value = date('Y-m-d', strtotime($this->value)) ?: date('Y-m-d');
+				$value = $this->value ? date('Y-m-d', strtotime($this->value)) : date('Y-m-d');
 				$html = '<input type="text" name="'.$this->name.'" data-plugin-datepicker class="form-control" value="'.old($this->name, $value).'" data-plugin-options=\'{ "format": "yyyy-mm-dd" }\'>';
 				break;
 			}
 			case 'time': {
-				$value = date('H:i:s', strtotime($this->value)) ?: date('H:i:s');
+				$value = $this->value ? date('H:i:s', strtotime($this->value)) : date('H:i:s');
 				$html = '<input type="text" name="'.$this->name.'" data-plugin-timepicker class="form-control" value="'.old($this->name, $value).'" data-plugin-options=\'{ "showMeridian": false }\'>';
 				break;
 			}
 			case 'datetime': {
-				$value = date('Y-m-d H:i:s', strtotime($this->value)) ?: date('H:i:s');
+				$value = $this->value ? date('Y-m-d H:i:s', strtotime($this->value)) : date('H:i:s');
 				$html = '<input type="text" name="'.$this->name.'" data-plugin-datetimepicker class="form-control" value="'.old($this->name, $value).'">';
 				break;
 			}
