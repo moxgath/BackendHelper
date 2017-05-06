@@ -65,7 +65,9 @@
 @push('javascript')
     <script type="text/javascript">
     	$(document).ready(function() {
-    		$('.datatable').dataTable();
+    		$('.datatable').dataTable({
+                "order": [[ 0, "desc" ]]
+			});
     		$('form.deleteForm').submit(function(e) {
     			if(!confirm("คุณยืนยันที่จะลบข้อมูลนี้ใช่หรือไม่ ?")) {
     				e.preventDefault();
