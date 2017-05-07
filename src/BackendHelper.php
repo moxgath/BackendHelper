@@ -90,7 +90,7 @@ class BackendHelper
 		return $this->renderCustomView('backendhelper::index', $parameters);
 	}
 
-	public function renderEdit($item, array $parameters = []) {
+	public function renderEdit($item, $viewPath = null, array $parameters = []) {
 		$this->editItem = $item;
 
 		foreach($this->fieldList as $field) {
@@ -117,7 +117,7 @@ class BackendHelper
 				}
 			}
 		}
-		return $this->renderCustomView('backendhelper::edit', $parameters);
+		return $this->renderCustomView('backendhelper::'.($viewPath ?: 'edit'), $parameters);
 	}
 
 	public function renderCreate(array $parameters = []) {
