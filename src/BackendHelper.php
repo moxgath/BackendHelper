@@ -124,7 +124,7 @@ class BackendHelper
 		return $this->renderCustomView('backendhelper::create', $parameters);
 	}
 
-	protected function renderCustomView(string $viewPath, array $parameters = []) {
+	public function renderCustomView(string $viewPath, array $parameters = []) {
 		$parameters['backendHelper'] = $this;
 		return view($viewPath, $parameters);
 	}
