@@ -100,7 +100,7 @@ class BaseBackendController extends Controller
     protected function uploadFiles(Request $request, $item) {
         $returnValue = [];
         foreach($request->except(['_token', '_method']) as $name => $input) {
-            if($request->file($name)) {
+            if($request->hasFile($name) && $request->file($name) instanceof UploadedFile) {
                 $fileName = $this->uploadFile($request->file($name), $this->filePath);
                 if($fileName) {
                     if($item->$name && $item->$name != $fileName && Storage::disk('public')->exists($this->filePath.'/'.$item->$name)) {
