@@ -165,6 +165,9 @@ class BackendHelper
 		return $this->deleteBtnUrl;
 	}
 
+    public function setEditItem($value) {
+        $this->editItem = $value;
+    }
 	public function setAddBtn(bool $value) {
 		$this->addBtn = $value;
 	}
@@ -183,6 +186,9 @@ class BackendHelper
 	public function setDeleteBtnUrl($value) {
 		$this->deleteBtnUrl = $value;
 	}
+    public function setDataList($value) {
+        $this->dataList = $value;
+    }
 
 	public function hasAddBtn() {
 		return $this->addBtn;
